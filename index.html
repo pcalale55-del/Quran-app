@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0f766e">
+  <title>القرآن الكريم</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="القرآن">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="brand">القرآن الكريم</div>
+      <div class="subtitle">اقرأ كتاب الله بسهولة</div>
+    </div>
+    <button id="themeBtn" class="icon-btn" title="الوضع الليلي">🌙</button>
+  </header>
+
+  <main class="container">
+    <section id="homeView">
+      <div class="hero">
+        <div class="hero-icon">۞</div>
+        <div>
+          <h1>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</h1>
+          <p>وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا</p>
+        </div>
+      </div>
+
+      <section id="continueCard" class="continue card hidden">
+        <div>
+          <span class="label">متابعة القراءة</span>
+          <h2 id="continueTitle">—</h2>
+          <p id="continueMeta">—</p>
+        </div>
+        <button id="continueBtn" class="primary">متابعة</button>
+      </section>
+
+      <div class="section-head">
+        <h2>سور القرآن الكريم</h2>
+        <span id="surahCount">114 سورة</span>
+      </div>
+
+      <div class="search-wrap">
+        <span>🔎</span>
+        <input id="searchInput" type="search" placeholder="ابحث باسم السورة أو رقمها">
+      </div>
+
+      <div id="surahGrid" class="surah-grid"></div>
+    </section>
+
+    <section id="readerView" class="hidden">
+      <button id="backBtn" class="back">→ العودة إلى السور</button>
+      <div class="reader-head card">
+        <div>
+          <span id="readerNumber" class="surah-number">١</span>
+          <h1 id="readerTitle">الفاتحة</h1>
+          <p id="readerMeta">مكية • 7 آيات</p>
+        </div>
+        <button id="audioBtn" class="primary">▶ تلاوة السورة</button>
+      </div>
+      <div id="loading" class="loading">جارٍ تحميل السورة…</div>
+      <article id="ayahs" class="ayah-list"></article>
+      <div class="reader-actions">
+        <button id="prevSurah">السورة السابقة</button>
+        <button id="saveBtn">📌 حفظ موضع القراءة</button>
+        <button id="nextSurah">السورة التالية</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>تطبيق القرآن الكريم — النسخة الأولى</span>
+    <span>مصدر نص القرآن: Al Quran Cloud API</span>
+  </footer>
+
+  <audio id="audio" controls class="audio hidden"></audio>
+  <script src="app.js"></script>
+  <script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js");</script>
+</body>
+</html>

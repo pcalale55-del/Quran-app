@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap');
+
+:root {
+  --bg: #f7f5ef;
+  --surface: #fffdf8;
+  --surface2: #f0ede3;
+  --text: #1f2933;
+  --muted: #6b7280;
+  --primary: #0f766e;
+  --primary2: #115e59;
+  --border: #e5e1d7;
+  --shadow: 0 8px 28px rgba(20, 40, 35, .08);
+}
+body.dark {
+  --bg: #111827;
+  --surface: #182333;
+  --surface2: #202c3d;
+  --text: #f3f4f6;
+  --muted: #aab2bf;
+  --primary: #2dd4bf;
+  --primary2: #14b8a6;
+  --border: #2c3a4d;
+  --shadow: 0 8px 28px rgba(0,0,0,.25);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: Cairo, system-ui, sans-serif; transition: .2s;
+}
+.topbar {
+  position: sticky; top: 0; z-index: 5; display:flex; justify-content:space-between;
+  align-items:center; padding: 16px max(20px, calc((100vw - 1100px)/2));
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
+}
+.brand { font-weight: 700; font-size: 1.3rem; color: var(--primary); }
+.subtitle { color: var(--muted); font-size: .8rem; }
+.icon-btn, .back, .reader-actions button {
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  border-radius: 12px; padding: 10px 14px; cursor:pointer;
+}
+.container { max-width: 1100px; margin:auto; padding: 28px 20px 50px; }
+.hero {
+  display:flex; gap:20px; align-items:center; padding:30px; margin-bottom:22px;
+  border-radius: 24px; color:#fff; background: linear-gradient(135deg,#115e59,#0f766e);
+  box-shadow: var(--shadow);
+}
+.hero-icon { font-size: 3.4rem; }
+.hero h1 { font-family: Amiri, serif; margin:0 0 5px; font-size:1.65rem; }
+.hero p { margin:0; opacity:.85; }
+.card {
+  background:var(--surface); border:1px solid var(--border); border-radius:20px;
+  box-shadow:var(--shadow);
+}
+.continue { padding:20px; display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; }
+.label { color:var(--primary); font-size:.85rem; }
+.continue h2 { margin:4px 0; }
+.continue p { margin:0; color:var(--muted); }
+.primary {
+  border:0; background:var(--primary); color:white; padding:11px 18px;
+  border-radius:12px; cursor:pointer; font-family:inherit; font-weight:700;
+}
+.primary:hover { background:var(--primary2); }
+.section-head { display:flex; justify-content:space-between; align-items:center; }
+.section-head h2 { margin: 8px 0 14px; }
+.section-head span { color:var(--muted); font-size:.85rem; }
+.search-wrap {
+  display:flex; align-items:center; gap:8px; padding:12px 14px; margin-bottom:18px;
+  background:var(--surface); border:1px solid var(--border); border-radius:14px;
+}
+.search-wrap input { border:0; outline:0; flex:1; background:transparent; color:var(--text); font:inherit; }
+.surah-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:12px; }
+.surah {
+  display:flex; align-items:center; gap:14px; width:100%; text-align:right;
+  padding:16px; border:1px solid var(--border); border-radius:16px; background:var(--surface);
+  color:var(--text); cursor:pointer; transition:.15s;
+}
+.surah:hover { transform:translateY(-2px); border-color:var(--primary); }
+.surah .num {
+  width:42px; height:42px; display:grid; place-items:center; border-radius:50%;
+  background:var(--surface2); color:var(--primary); font-weight:700;
+}
+.surah .name { font-weight:700; font-size:1.05rem; }
+.surah .meta { color:var(--muted); font-size:.78rem; }
+.hidden { display:none !important; }
+.reader-head { padding:20px; margin:15px 0; display:flex; justify-content:space-between; align-items:center; }
+.surah-number { color:var(--primary); }
+.reader-head h1 { font-family:Amiri,serif; font-size:2rem; margin:2px 0; }
+.reader-head p { color:var(--muted); margin:0; }
+.loading { padding:30px; text-align:center; color:var(--muted); }
+.ayah-list { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:10px 18px; }
+.ayah {
+  padding:25px 10px; border-bottom:1px solid var(--border);
+  font-family:Amiri,serif; font-size:2rem; line-height:2.15; text-align:right;
+}
+.ayah:last-child { border-bottom:0; }
+.ayah-num { font-family:Cairo,sans-serif; color:var(--primary); font-size:.9rem; margin-right:8px; }
+.reader-actions { display:flex; justify-content:center; gap:10px; margin:20px 0; flex-wrap:wrap; }
+.audio { position:fixed; left:15px; bottom:15px; z-index:10; }
+footer { padding:25px 20px; border-top:1px solid var(--border); color:var(--muted); font-size:.8rem; display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
+@media(max-width:600px) {
+  .hero { padding:22px; }
+  .hero h1 { font-size:1.25rem; }
+  .continue, .reader-head { flex-direction:column; align-items:stretch; gap:15px; }
+  .ayah { font-size:1.65rem; }
+}
