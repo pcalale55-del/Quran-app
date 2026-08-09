@@ -103,3 +103,73 @@ function init(){
   };
 }
 init();
+// ===============================
+// مواقيت الصلاة
+// ===============================
+
+async function loadPrayerTimes() {
+  const locationText = document.getElementById("prayerLocation");
+
+  if (!navigator.geolocation) {
+    if (locationText) {
+      locationText.textContent = "المتصفح لا يدعم تحديد الموقع";
+    }
+    return;
+  }
+
+  if (locationText) {
+    locationText.textContent = "📍 جاري تحديد موقعك...";
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    async (position) => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+
+      try {
+        const response = await fetch(
+          `https://api.aladhan.com/v1/timings?latitude=${latitude}&longitude=${longitude}&method=3`
+        );
+
+        const result = await response.json();
+        const timings = result.data.timings;
+
+        document.getElementById("fajr").textContent = timings.Fajr;
+        document.getElementById("sunrise").textContent = timings.Sunrise;
+        document.getElementById("dhuhr").textContent = timings.Dhuhr;
+        document.getElementById("asr").textContent = timings.Asr;
+        document.getElementById("maghrib").textContent = timings.Maghrib;
+        document.getElementById("isha").textContent = timings.Isha;
+
+        if (locationText) {
+          locationText.textContent = "📍 تم تحديث المواقيت حسب موقعك";
+        }
+
+      } catch (error) {
+        console.error("Prayer times error:", error);
+
+        if (locationText) {
+          locationText.textContent = "❌ تعذر تحميل مواقيت الصلاة";
+        }
+      }
+    },
+
+    () => {
+      if (locationText) {
+        locationText.textContent = "⚠️ اسمح للتطبيق بالوصول إلى موقعك";
+      }
+    }
+  );
+}
+
+
+// زر تحديث الموقع والمواقيت
+const locationBtn = document.getElementById("locationBtn");
+
+if (locationBtn) {
+  locationBtn.addEventListener("click", loadPrayerTimes);
+}
+
+
+// تحميل المواقيت تلقائياً عند فتح التطبيق
+loadPrayerTimes();
